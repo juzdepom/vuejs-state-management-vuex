@@ -24,11 +24,6 @@
             multiple: 1,
           }
         },
-        watch: {
-          multiple: function(number){
-            this.$store.state.multiple = number;
-          }
-        },
         computed: {
           // without the ... mapGetters would not work, we need to add them
           //to allow other computed properties
@@ -36,8 +31,10 @@
           ...mapGetters([
               'doubleCounter',
               'stringCounter',
-              'multipleCounter',
             ]),
+            multipleCounter(){
+              return this.multiple * this.$store.getters.counter
+            }
         }
 
 

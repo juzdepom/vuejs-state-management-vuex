@@ -1,17 +1,16 @@
 const state = {
   counter: 0,
-  multiple: 1,
 };
 
 const getters = {
+  counter: state => {
+    return state.counter
+  },
   doubleCounter: state => {
     return state.counter * 2
   },
   stringCounter: state => {
     return state.counter + ' Clicks'
-  },
-  multipleCounter: state => {
-    return state.counter * state.multiple
   },
 };
 
