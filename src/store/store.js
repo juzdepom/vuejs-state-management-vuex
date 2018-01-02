@@ -7,6 +7,7 @@ export const store = new Vuex.Store({
   state: {
     counter: 0,
     multiple: 1,
+    value: 0,
   },
   getters: {
     doubleCounter: state => {
@@ -17,6 +18,9 @@ export const store = new Vuex.Store({
     },
     multipleCounter: state => {
       return state.counter * state.multiple
+    },
+    value: state => {
+      return state.value;
     }
   },
   mutations: {
@@ -25,8 +29,13 @@ export const store = new Vuex.Store({
     },
     decrement: state => {
       state.counter--
+    },
+    updateValue: (state, payload) => {
+      state.value = payload;
     }
   },
+  // difference between actions and mutations are that you can make
+  // asynchronous requests with actions
   actions: {
     increment: ({ commit }, payload) => {
       commit('increment', payload);
@@ -39,6 +48,9 @@ export const store = new Vuex.Store({
       setTimeout(() => {
         commit('increment', payload.by);
       }, payload.duration);
+    },
+    updateValue: ({ commit }, payload) => {
+      commit('updateValue', payload);
     }
   }
 });
